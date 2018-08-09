@@ -5,7 +5,7 @@
 
 	<groupId>com.donrwalsh</groupId>
 	<artifactId>good-habits</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>good-habits</name>
