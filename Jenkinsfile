@@ -33,8 +33,8 @@ pipeline {
     }
 	post {
         always {
-            deleteDir() /* clean up our workspace */
 			archiveArtifacts artifacts: '**/*.jar', fingerprint:true
+            deleteDir() /* clean up our workspace */
         }        
     }
 }
