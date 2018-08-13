@@ -33,6 +33,14 @@ pipeline {
         stage('Test') {
             steps {
 				echo 'Testing...'
+				node ('stage') {
+					unstash "JAR"
+					script {
+						withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
+							sh 'nohup java -jar good-habits-0.0.1.jar &'
+						}
+					}
+				}
 			}
 		}
 		stage('Deploy') {
