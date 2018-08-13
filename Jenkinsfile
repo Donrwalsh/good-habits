@@ -3,6 +3,7 @@ pipeline {
 	tools {
 		maven 'Maven 3.5.4'
 		jdk 'JDK8'
+		nodejs 'Node'
 	}
 	environment {
 		jar_file = 'server.jar'		
@@ -15,11 +16,18 @@ pipeline {
 					sh 'mvn clean package -Dmaven.test.skip=true'
 					dir("target") {
 						stash includes: 'good-habits-0.0.1.jar', name: 'JAR'
+						archiveArtifacts artifacts: '*.jar', fingerprint:true
 					}
 				}
 				dir("client") {
-					sh 'ng build --prod --build-optimizer'
+				    sh 'npm install'
+				    sh 'ng build --prod --build-optimizer'
+					dir("dist") {
+						stash includes: '**/*.*', name: 'frontend'
+						archiveArtifacts artifacts: '**/*.*', fingerprint:true
+					}
 				}
+				
             }
         }
         stage('Test') {
@@ -36,7 +44,6 @@ pipeline {
     }
 	post {
         always {
-			archiveArtifacts artifacts: '**/*.jar', fingerprint:true
             deleteDir() /* clean up our workspace */
         }        
     }
