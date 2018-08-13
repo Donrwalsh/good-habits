@@ -17,6 +17,6 @@ export class AppComponent extends Base implements OnInit {
   env = this.ENV_NAME;
 
   ngOnInit(): void {
-    this.http.get('/hello-world').subscribe(data => this.title = data['message']);
+    this.http.get(':8080/hello-world').subscribe(data => this.title = data['message']);
   }
 }
