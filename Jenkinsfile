@@ -40,6 +40,7 @@ pipeline {
 							sh 'nohup java -jar good-habits-0.0.1.jar &'
 						}
 					}
+					unstash "frontend"
 				}
 			}
 		}
