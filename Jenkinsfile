@@ -35,7 +35,7 @@ pipeline {
 				echo 'Testing...'
 				node ('stage') {
 					unstash "JAR"
-					sh 'pkill -f good-habits || true'
+					sh 'pkill good-habits || true'
 					script {
 						withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
 							sh 'nohup java -jar good-habits-0.0.1.jar &'
@@ -52,7 +52,7 @@ pipeline {
 				echo 'Deploying...'
 				node ('prod') {
 					unstash "JAR"
-					sh 'pkill -f good-habits || true'
+					sh 'pkill good-habits || true'
 					script {
 						withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
 							sh 'nohup java -jar good-habits-0.0.1.jar &'
