@@ -19,6 +19,7 @@ pipeline {
 				}
 				dir("client") {
 					sh 'ng build --prod --build-optimizer'
+				}
             }
         }
         stage('Test') {
