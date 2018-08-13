@@ -40,7 +40,10 @@ pipeline {
 							sh 'nohup java -jar good-habits-0.0.1.jar &'
 						}
 					}
-					unstash "frontend"
+					dir("/var/www/html") {
+						sh 'whoami'
+						unstash "frontend"
+					}
 				}
 			}
 		}
