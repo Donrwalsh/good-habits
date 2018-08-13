@@ -17,6 +17,8 @@ pipeline {
 						stash includes: 'good-habits-0.0.1.jar', name: 'JAR'
 					}
 				}
+				dir("client") {
+					sh 'ng build --prod --build-optimizer'
             }
         }
         stage('Test') {
