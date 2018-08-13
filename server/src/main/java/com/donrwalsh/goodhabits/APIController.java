@@ -10,6 +10,6 @@ public class APIController {
     @RequestMapping(value = "/hello-world", produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin
     ResponseEntity<?> helloWorld() {
-        return ResponseEntity.ok().body(new hello("Hello World"));
+        return ResponseEntity.ok().body(new hello("Still Hello World, but Different This Time!"));
     }
 }
