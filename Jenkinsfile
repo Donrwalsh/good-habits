@@ -22,7 +22,7 @@ pipeline {
 				dir("client") {
 				    sh 'npm install'
 				    sh 'ng build --prod --build-optimizer'
-					dir("dist") {
+					dir("dist/client") {
 						stash includes: '**/*.*', name: 'frontend'
 						archiveArtifacts artifacts: '**/*.*', fingerprint:true
 					}
