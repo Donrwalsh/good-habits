@@ -41,7 +41,6 @@ pipeline {
 						}
 					}
 					dir("/var/www/html") {
-						sh 'whoami'
 						unstash "frontend"
 					}
 				}
@@ -50,7 +49,17 @@ pipeline {
 		stage('Deploy') {
             steps {
 				echo 'Deploying...'
-                
+				node ('prod') {
+					unstash "JAR"
+					script {
+						withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
+							sh 'nohup java -jar good-habits-0.0.1.jar &'
+						}
+					}
+					dir("/var/www/html") {
+						unstash "frontend"
+					}
+				}
             }
         }
     }
